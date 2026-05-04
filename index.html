@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dentrilogy Academy — As Seen on FOX 29</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #060608;
+    --surface: #0c0c10;
+    --card: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.07);
+    --purple: #7C5CFF;
+    --purple-glow: rgba(124, 92, 255, 0.4);
+    --teal: #00E5C7;
+    --teal-glow: rgba(0, 229, 199, 0.3);
+    --gold: #FFBE0B;
+    --white: #ffffff;
+    --text: #E8E8ED;
+    --muted: #8B8B9E;
+    --dim: #5A5A6E;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ── GLOBAL GLOW HELPERS ── */
+  .glow-purple {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+    opacity: 0.35;
+  }
+  .glow-teal {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+    opacity: 0.25;
+  }
+
+  /* ── SECTION HEADINGS ── */
+  .section-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--purple);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: center;
+    font-size: clamp(1.75rem, 4vw, 2.6rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 520px;
+    margin: 0 auto 56px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 100px 0 80px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero .glow-purple { top: -200px; left: 50%; transform: translateX(-50%); }
+  .hero .glow-teal { bottom: -100px; right: -100px; }
+  @media (max-width: 768px) { .hero { padding: 64px 0 48px; } }
+
+  /* grain overlay */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .hero .container { position: relative; z-index: 1; }
+
+  .fox-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #FFD700 0%, #FF9F1C 100%);
+    color: #1a1a00;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 10px 24px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.2), 0 2px 8px rgba(0,0,0,0.3);
+    animation: badge-glow 3s ease-in-out infinite alternate;
+  }
+  @keyframes badge-glow {
+    from { box-shadow: 0 0 40px rgba(255, 215, 0, 0.15), 0 2px 8px rgba(0,0,0,0.3); }
+    to   { box-shadow: 0 0 60px rgba(255, 215, 0, 0.3), 0 2px 8px rgba(0,0,0,0.3); }
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.08;
+    margin-bottom: 22px;
+    letter-spacing: -0.03em;
+  }
+  .hero h1 .gradient-text {
+    background: linear-gradient(135deg, var(--teal) 0%, #60EFCF 50%, var(--purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p.sub {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 16px 36px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--purple) 0%, #9B7DFF 100%);
+    color: var(--white);
+    box-shadow: 0 4px 24px var(--purple-glow), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px var(--purple-glow), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+
+  .btn-outline {
+    background: rgba(255,255,255,0.04);
+    color: var(--teal);
+    border: 1.5px solid rgba(0, 229, 199, 0.3);
+    backdrop-filter: blur(12px);
+  }
+  .btn-outline:hover {
+    background: rgba(0, 229, 199, 0.08);
+    border-color: var(--teal);
+    transform: translateY(-2px);
+  }
+
+  .hero-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--dim);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── STATS BAR ── */
+  .stats {
+    position: relative;
+    background: linear-gradient(135deg, #1a1040 0%, #0e0e2a 100%);
+    padding: 48px 0;
+    border-top: 1px solid rgba(124, 92, 255, 0.15);
+    border-bottom: 1px solid rgba(124, 92, 255, 0.15);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+  .stat-item .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 700;
+    display: block;
+    background: linear-gradient(180deg, #fff 20%, rgba(255,255,255,0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-item .label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ── PROGRAMS ── */
+  .programs {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+  }
+  .programs .glow-purple { top: 100px; right: -200px; opacity: 0.2; }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .programs-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+  }
+
+  .program-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 36px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(20px);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .program-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--teal));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .program-card:hover {
+    border-color: rgba(255,255,255,0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .program-card:hover::before { opacity: 1; }
+
+  .program-card .duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 229, 199, 0.08);
+    color: var(--teal);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(0, 229, 199, 0.15);
+    margin-bottom: 18px;
+    width: fit-content;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .program-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .program-card p {
+    font-size: 14px;
+    color: var(--muted);
+    flex-grow: 1;
+    margin-bottom: 24px;
+    line-height: 1.65;
+  }
+  .program-card .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  /* ── WHY DENTRILOGY ── */
+  .why {
+    padding: 100px 0;
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+  .why .glow-teal { bottom: -200px; left: -100px; opacity: 0.15; }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .why-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+  @media (max-width: 480px) {
+    .why-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  }
+
+  .why-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+  }
+  .why-item:hover {
+    border-color: rgba(255,255,255,0.1);
+    transform: translateY(-3px);
+  }
+  .why-item .icon-wrap {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, rgba(124,92,255,0.15) 0%, rgba(0,229,199,0.1) 100%);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    border: 1px solid rgba(124,92,255,0.1);
+  }
+  .why-item .icon-wrap svg {
+    width: 24px; height: 24px;
+    stroke: var(--purple);
+    stroke-width: 2;
+    fill: none;
+  }
+  .why-item h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .why-item p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonials .glow-purple { top: 0; left: -200px; opacity: 0.15; }
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .test-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  }
+  .test-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .test-card:hover {
+    border-color: rgba(255,255,255,0.1);
+    transform: translateY(-3px);
+  }
+  .test-card .stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+  .test-card .quote {
+    font-size: 14.5px;
+    color: var(--text);
+    margin-bottom: 20px;
+    line-height: 1.75;
+    font-style: italic;
+    position: relative;
+  }
+  .test-card .quote-mark {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--purple);
+    opacity: 0.3;
+    position: absolute;
+    top: -8px;
+    left: -4px;
+  }
+  .test-card .author {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .test-card .role {
+    font-size: 13px;
+    color: var(--dim);
+    margin-top: 3px;
+  }
+
+  /* ── BOOK A CALL ── */
+  .book {
+    padding: 100px 0;
+    background: var(--surface);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .book .glow-teal { top: -100px; left: 50%; transform: translateX(-50%); opacity: 0.12; }
+
+  .calendar-embed {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 8px;
+    max-width: 720px;
+    margin: 0 auto 28px;
+    min-height: 520px;
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+  }
+  .calendar-embed iframe {
+    width: 100%;
+    min-height: 510px;
+    border: none;
+    border-radius: 18px;
+  }
+  .book .phone-note {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .book .phone-note a {
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s;
+  }
+  .book .phone-note a:hover { color: #40FFE0; }
+
+  /* ── LOCATION ── */
+  .location {
+    padding: 80px 0;
+    text-align: center;
+  }
+  .location-details {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .location-details span,
+  .location-details a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .location-details a { color: var(--teal); text-decoration: none; font-weight: 500; }
+  .map-embed {
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 720px;
+    margin: 0 auto;
+    border: 1px solid var(--card-border);
+  }
+  .map-embed iframe {
+    width: 100%;
+    height: 280px;
+    border: 0;
+    filter: grayscale(0.85) invert(0.93) contrast(0.85) brightness(0.9);
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    position: relative;
+    padding: 80px 0;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1040 0%, #12082a 50%, #0a0a20 100%);
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, var(--purple-glow) 0%, transparent 60%);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  .final-cta .container { position: relative; z-index: 1; }
+  .final-cta h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .final-cta p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 36px;
+  }
+  .final-cta .btn-white {
+    background: var(--white);
+    color: #1a1040;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    box-shadow: 0 4px 24px rgba(255,255,255,0.1);
+  }
+  .final-cta .btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(255,255,255,0.15);
+  }
+  .final-cta .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(12px);
+  }
+  .final-cta .btn-ghost:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.35);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 56px 0 36px;
+    background: #030305;
+    text-align: center;
+    font-size: 13px;
+    color: var(--dim);
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  footer .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  footer .links {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+  }
+  footer .links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.15s;
+  }
+  footer .links a:hover { color: var(--teal); }
+  footer .copyright {
+    margin-bottom: 8px;
+    color: var(--dim);
+  }
+  footer .badges {
+    margin-top: 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── UTILITY ── */
+  .relative { position: relative; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="glow-purple"></div>
+  <div class="glow-teal"></div>
+  <div class="container">
+    <div class="fox-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      As Seen on FOX 29
+    </div>
+    <h1>Launch Your Dental Career<br>in <span class="gradient-text">Weeks, Not Years</span></h1>
+    <p class="sub">Hands-on dental career training in West Palm Beach. Get certified, get hired, and start earning — fast.</p>
+    <div class="cta-row">
+      <a href="#book" class="btn btn-primary">Schedule My Free Call</a>
+      <a href="tel:5614611541" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (561) 461-1541
+      </a>
+    </div>
+    <p class="hero-note">Free 15-minute call &middot; No pressure &middot; Questions welcome</p>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><span class="num">98%</span><span class="label">Course Completion</span></div>
+      <div class="stat-item"><span class="num">95%</span><span class="label">Job Placement</span></div>
+      <div class="stat-item"><span class="num">8 Weeks</span><span class="label">To Get Certified</span></div>
+      <div class="stat-item"><span class="num">$20–27/hr</span><span class="label">Avg Starting Pay</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs relative" id="programs">
+  <div class="glow-purple"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="section-label">Programs</p>
+    <h2 class="section-title">Start Your New Career</h2>
+    <p class="section-sub">Three paths. One goal — a high-paying dental career in 8 weeks.</p>
+    <div class="programs-grid">
+      <div class="program-card">
+        <span class="duration">8 Weeks</span>
+        <h3>Dental Assisting</h3>
+        <p>Chairside assisting, X-rays, sterilization, 3D printing. Earn EFDA, OSHA/HIPAA, CPR &amp; Radiology certifications.</p>
+        <a href="#book" class="btn btn-primary">Apply Now</a>
+      </div>
+      <div class="program-card">
+        <span class="duration">8 Weeks</span>
+        <h3>Front Office Administration</h3>
+        <p>Patient scheduling, insurance verification, billing, and practice management software. Everything to run the front desk.</p>
+        <a href="#book" class="btn btn-primary">Apply Now</a>
+      </div>
+      <div class="program-card">
+        <span class="duration">8 Semanas</span>
+        <h3>Asistente Dental en Espa&ntilde;ol</h3>
+        <p>Programa completo en espa&ntilde;ol. Asistencia cl&iacute;nica, radiograf&iacute;as, esterilizaci&oacute;n, certificaciones EFDA/OSHA/HIPAA/CPR.</p>
+        <a href="#book" class="btn btn-primary">Aplicar Ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY DENTRILOGY -->
+<section class="why relative">
+  <div class="glow-teal"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="section-label">Why Us</p>
+    <h2 class="section-title">Why Dentrilogy</h2>
+    <p class="section-sub">We don't just teach — we get you hired.</p>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h4>Real Clinical Environment</h4>
+        <p>Train with real patients from day one — not mannequins.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h4>Get Hired Fast</h4>
+        <p>8-week accelerated program with all certifications included.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h4>Industry Certifications</h4>
+        <p>EFDA, OSHA/HIPAA, CPR, and Radiology — all included.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4>Career Placement</h4>
+        <p>We help you land your first dental job after graduation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials relative">
+  <div class="glow-purple"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="section-label">Testimonials</p>
+    <h2 class="section-title">Real Students, Real Results</h2>
+    <p class="section-sub">Don't take our word for it — hear from our graduates.</p>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="quote"><span class="quote-mark">&ldquo;</span>I had zero dental experience. Eight weeks later I was hired at a practice in Boca. Hands-on from day one.</p>
+        <p class="author">Nadine M.</p>
+        <p class="role">DA Graduate &middot; Boca Raton</p>
+      </div>
+      <div class="test-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="quote"><span class="quote-mark">&ldquo;</span>I was nervous about switching careers at 32. I got my first job offer before I even graduated.</p>
+        <p class="author">Abigail R.</p>
+        <p class="role">Front Office Admin &middot; West Palm Beach</p>
+      </div>
+      <div class="test-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="quote"><span class="quote-mark">&ldquo;</span>Being able to learn in my language while getting certified — I couldn't believe how fast it all clicked.</p>
+        <p class="author">La'Yanni T.</p>
+        <p class="role">DA Graduate &middot; Espa&ntilde;ol Program</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK A CALL -->
+<section class="book relative" id="book">
+  <div class="glow-teal"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="section-label">Enrollment</p>
+    <h2 class="section-title">Book Your Free 15-Minute Call</h2>
+    <p class="section-sub">Talk to our enrollment team. No pressure — just honest answers.</p>
+    <div class="calendar-embed">
+      <iframe src="https://app.springboardcrm.com/widget/booking/26BjfXsbtq9fxIijFyQ8" scrolling="no"></iframe>
+    </div>
+    <p class="phone-note">Prefer to call? <a href="tel:5614611541">(561) 461-1541</a> &mdash; Mon&ndash;Fri 9am&ndash;6pm</p>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location">
+  <div class="container">
+    <p class="section-label">Location</p>
+    <h2 class="section-title" style="margin-bottom:24px;">Visit Us</h2>
+    <div class="location-details">
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        580 Village Blvd, Suite 120, WPB, FL 33409
+      </span>
+      <a href="tel:5614611541">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (561) 461-1541
+      </a>
+      <span>Mon&ndash;Fri 9am&ndash;6pm</span>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.5!2d-80.1!3d26.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z580+Village+Blvd+West+Palm+Beach+FL!5e0!3m2!1sen!2sus!4v1" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Classes Are Forming Now.</h2>
+    <p>South Florida dental practices are hiring — our graduates get the jobs.</p>
+    <div class="cta-row">
+      <a href="#book" class="btn btn-white">Schedule My Free Call</a>
+      <a href="tel:5614611541" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call (561) 461-1541
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p class="brand">Dentrilogy Academy</p>
+    <div class="links">
+      <a href="#programs">Programs</a>
+      <a href="#book">Schedule a Call</a>
+      <a href="https://dentrilogy.learnworlds.com/sign-in">Student Login</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+    </div>
+    <p class="copyright">&copy; 2026 Dentrilogy Academy. All rights reserved.</p>
+    <p class="badges">Licensed by FL Board of Dentistry &middot; FL Department of Education</p>
+  </div>
+</footer>
+
+</body>
+</html>
