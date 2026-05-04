@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dentrilogy Academy — As Seen on FOX 29</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'XXXXXXXXXXXXXXXXX');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -768,7 +784,7 @@
     <h2 class="section-title">Book Your Free 15-Minute Call</h2>
     <p class="section-sub">Talk to our enrollment team. No pressure — just honest answers.</p>
     <div class="calendar-embed">
-      <iframe src="https://app.springboardcrm.com/widget/booking/26BjfXsbtq9fxIijFyQ8" scrolling="no"></iframe>
+      <iframe src="https://app.springboardcrm.com/widget/booking/26BjfXsbtq9fxIijFyQ8?source=fox29-tv&utm_source=fox29&utm_medium=tv&utm_campaign=may2026" scrolling="no"></iframe>
     </div>
     <p class="phone-note">Prefer to call? <a href="tel:5614611541">(561) 461-1541</a> &mdash; Mon&ndash;Fri 9am&ndash;6pm</p>
   </div>
@@ -826,6 +842,37 @@
     <p class="badges">Licensed by FL Board of Dentistry &middot; FL Department of Education</p>
   </div>
 </footer>
+
+<!-- UTM pass-through to GHL calendar embed + Meta Pixel Lead tracking -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Pass UTM params from page URL to the GHL calendar iframe
+  var params = new URLSearchParams(window.location.search);
+  var iframe = document.querySelector('.calendar-embed iframe');
+  if (iframe) {
+    var url = new URL(iframe.src);
+    // Always set fox29-tv source
+    url.searchParams.set('source', 'fox29-tv');
+    // Pass through any UTMs from the page URL
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function(p) {
+      if (params.get(p)) url.searchParams.set(p, params.get(p));
+    });
+    iframe.src = url.toString();
+  }
+
+  // Fire Meta Pixel Lead event on CTA button clicks
+  document.querySelectorAll('a.btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var text = this.textContent.trim().toLowerCase();
+      if (text.indexOf('schedule') !== -1 || text.indexOf('apply') !== -1 || text.indexOf('aplicar') !== -1) {
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead');
+        }
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>
